@@ -138,7 +138,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@18.0.6":
+"@types/node@*", "@types/node@^18.0.6":
   "integrity" "sha512-/xUq6H2aQm261exT6iZTMifUySEt4GR5KX8eYyY+C4MSNPqSh9oNIP7tz2GLKTlFaiBbgZNxffoR3CVRG+cljw=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.0.6.tgz"
   "version" "18.0.6"

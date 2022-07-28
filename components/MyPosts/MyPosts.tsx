@@ -2,33 +2,41 @@ import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../helper/axios";
 import withAuth from "../../HOC/withAuth";
 import { SinglePostType } from "../../pages";
+import useMyPostStore from "../../store/myPostStore";
 import MyPost from "../MyPost/MyPost";
 type MyPostsProps = {
   userId: string;
 };
 function MyPosts(props: MyPostsProps) {
   const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<SinglePostType[]>([]);
-
+  // const [posts, setPosts] = useState<SinglePostType[]>([]);
+  const posts = useMyPostStore((state) => state.posts);
+  const setPosts = useMyPostStore((state) => state.setPosts);
+  console.log(posts);
+  //TODO use thunk like in zuestand for data fetching
   useEffect(() => {
     console.log();
     axiosInstance
       .get("/post/myPost")
       .then((data) => {
+        console.log(data.data.posts);
         setPosts(data.data.posts);
+        // setTimeout(() => {
+        // }, 10);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
-  }, []);
+  }, [setPosts]);
   if (loading) {
     return <h2>Loading....</h2>;
   }
   return (
     <>
       {posts.map((item) => {
+        console.log(item);
         return (
           <MyPost
             data={item}

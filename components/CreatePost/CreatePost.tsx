@@ -2,9 +2,11 @@ import styles from "./CreatePost.module.css";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { axiosInstance } from "../../helper/axios";
+import useMyPostStore from "../../store/myPostStore";
 function CreatePost() {
   const postRef = useRef<HTMLTextAreaElement>(null);
   const [isLoading, setIsLoading] = useState("POST");
+  const addPost = useMyPostStore((state) => state.addPost);
   const submitHandler = () => {
     setIsLoading("POSTING...");
     axiosInstance
@@ -13,6 +15,8 @@ function CreatePost() {
       })
       .then((data) => {
         postRef.current!.value = "";
+        console.log(data);
+        addPost(data.data.data);
         setIsLoading("POSTED!!!");
         setTimeout(() => {
           setIsLoading("POST");
