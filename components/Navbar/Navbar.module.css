@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0.5rem; */
+  align-items: stretch;
+  font-size: 2rem;
+  color: white;
+  background-color: #1f9be3;
+}
+.auth {
+  display: flex;
+  font-size: 1rem;
+  padding-right: 2rem;
+}
+.auth > div {
+  padding: 0 0.5rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.auth > div:hover {
+  background-color: #1a74a8;
+}

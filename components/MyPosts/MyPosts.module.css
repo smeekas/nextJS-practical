@@ -1,0 +1,46 @@
+.post {
+    background-color: gray;
+    border: 1px solid red;
+    max-width: 20rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .textContent {
+    /* border: 1px solid greenyellow; */
+    padding: 0.2rem 0.5rem;
+  }
+  .userName {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin: 0 0.4rem;
+  
+    border-bottom: 1px solid black;
+  }
+  .userName h5 {
+    padding: 0;
+    align-self: center;
+    margin: 0.5rem;
+  }
+  .likeCount {
+    margin: 0;
+    width: 15px;
+    /* border: 1px solid turquoise; */
+  }
+  .icon {
+    color: blue;
+    align-self: center;
+    cursor: pointer;
+    /* margin: 0 0.5rem; */
+    /* font-size: 2rem; */
+  }
+  
