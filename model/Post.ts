@@ -20,24 +20,30 @@ export interface PostType extends Document {
   likes: number;
   likedBy: ObjectId[];
 }
-const postSchema: Schema = new mongoose.Schema({
-  text: {
-    type: String,
-    required: true,
-  },
-  createdBy: {
-    type: mongoose.SchemaTypes.ObjectId,
-    required: true,
-    ref: "User",
-  },
-  likes: { type: Number, default: 0, required: true },
-  likedBy: [
-    {
+const postSchema: Schema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
+      required: true,
       ref: "User",
     },
-  ],
-});
+
+    likes: { type: Number, default: 0, required: true },
+    likedBy: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // export defaulti
 module.exports =

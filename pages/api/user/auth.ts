@@ -12,6 +12,12 @@ async function handler(req: NextRequestType, res: NextApiResponse) {
   // console.log(req.userId);
   const userData = await User.findOne({ _id: req.userId });
   // console.log(userData);
+  if(!userData){
+    return res.status(400).json({
+      status:false,
+      message:"No user found"
+    })
+  }
   res.status(200).json({
     status: true,
     userName: userData?.userName,

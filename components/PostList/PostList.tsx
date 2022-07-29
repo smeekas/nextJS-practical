@@ -1,4 +1,4 @@
-import type { SinglePostType } from "../../HOC/withAuth";
+import type {SinglePostType} from '../../pages/index'
 import Post from "../Post/Post";
 import WithAuth from "../../HOC/withAuth";
 export interface PostListType {

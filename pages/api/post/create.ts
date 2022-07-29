@@ -12,10 +12,13 @@ const User: Model<Usertype> = require("../../../model/User");
 async function handler(req: NextRequestType, res: NextApiResponse) {
   if (req.method === "POST") {
     const text: string = req.body.text;
-    if (countWords(text) >= 50) {
+    if (text.trim().length >= 150) {
       return res
         .status(400)
-        .json({ message: "number of words should be less than 50." });
+        .json({ message: "number of characters should be less than 150." });
+    }
+    if (text.trim().length === 0) {
+      return res.status(400).json({ message: "please enter some text." });
     }
     await connectDb();
     const newPost = new Post({

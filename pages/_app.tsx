@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           login(token, data.data.userName, data.data.userId);
         })
         .catch((err) => {
+          console.log(err);
           if (!err.response.data.status) {
             console.log(err.response.data.status);
             router.replace("/Login");

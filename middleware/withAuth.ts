@@ -7,7 +7,7 @@ export default function withProtect(
 ) {
   async function protect(req: NextRequestType, res: NextApiResponse) {
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
+    // console.log(authHeader);
     if (!authHeader) {
       return res
         .status(401)

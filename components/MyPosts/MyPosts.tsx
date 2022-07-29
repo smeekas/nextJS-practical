@@ -4,12 +4,14 @@ import withAuth from "../../HOC/withAuth";
 import { SinglePostType } from "../../pages";
 import useMyPostStore from "../../store/myPostStore";
 import MyPost from "../MyPost/MyPost";
+import styles from "./MyPosts.module.css";
 type MyPostsProps = {
   userId: string;
 };
 function MyPosts(props: MyPostsProps) {
   const [loading, setLoading] = useState(true);
   // const [posts, setPosts] = useState<SinglePostType[]>([]);
+
   const posts = useMyPostStore((state) => state.posts);
   const setPosts = useMyPostStore((state) => state.setPosts);
   console.log(posts);
@@ -34,7 +36,7 @@ function MyPosts(props: MyPostsProps) {
     return <h2>Loading....</h2>;
   }
   return (
-    <>
+    <div className={styles.AllPosts}>
       {posts.map((item) => {
         console.log(item);
         return (
@@ -46,7 +48,7 @@ function MyPosts(props: MyPostsProps) {
           />
         );
       })}
-    </>
+    </div>
   );
 }
 

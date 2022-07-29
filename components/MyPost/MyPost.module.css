@@ -1,45 +1,84 @@
 .post {
-    background-color: gray;
-    border: 1px solid red;
-    max-width: 20rem;
-    margin: 0.5rem;
-    border-radius: 8px;
-    align-self: flex-start;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .likes {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .textContent {
-    /* border: 1px solid greenyellow; */
-    padding: 0.2rem 0.5rem;
-  }
-  .userName {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.4rem;
-    margin: 0 0.4rem;
-  
-  }
-  .userName h5 {
-    padding: 0;
-    align-self: center;
-    margin: 0.5rem;
-  }
-  .likeCount {
-    margin: 0;
-    width: 15px;
-    /* border: 1px solid turquoise; */
-  }
-  .icon {
-    color: blue;
-    align-self: center;
-    cursor: pointer;
-    /* margin: 0 0.5rem; */
-    /* font-size: 2rem; */
-  }
-  
+  /* background-color: gray; */
+  /* border: 2px solid black; */
+  max-width: 20rem;
+  margin: 0.5rem;
+  border-radius: 4px;
+  padding: 0rem 0.5rem;
+  align-self: flex-start;
+  display: flex;
+  background-color: #f0f0f0;
+  transition: transform 250ms;
+  flex-direction: column;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 3px 19px -2px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 0px 3px 19px -2px rgba(0, 0, 0, 0.66);
+  box-shadow: 0px 3px 14px -2px rgba(0, 0, 0, 0.66);
+}
+.post:hover {
+  background-color: white;
+  transform: scale(1.01);
+}
+.textContent {
+  /* border: 1px solid greenyellow; */
+  padding: 0.2rem 0.5rem;
+}
+.userName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  margin: 0 0.4rem;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+}
+.userdata {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-items: center;
+  margin: 0.5rem;
+  /* padding-bottom: 1rem; */
+  margin-left: 0rem;
+  /* border: 1px solid blueviolet; */
+}
+.userName > div h5 {
+  padding: 0;
+  /* border: 1px solid gainsboro; */
+  font-size: 1.4rem;
+
+  margin: 0rem;
+}
+.date {
+  /* border: 1px solid red; */
+  /* justify-self: flex-start; */
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+}
+.likes {
+  display: flex;
+  /* flex: 1; */
+  flex-direction: row;
+  /* border: 1px solid red; */
+  align-items: center;
+}
+.likeCount {
+  margin: 0;
+  min-width: 15px;
+  padding-left: 4px;
+  font-size: 0.8em;
+  /* border: 1px solid turquoise; */
+}
+.icon {
+  color: blue;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  /* border: 1px solid violet; */
+  flex: 1;
+  /* margin: 0 0.5rem; */
+  /* font-size: 2rem; */
+}

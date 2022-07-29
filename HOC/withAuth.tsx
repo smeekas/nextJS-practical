@@ -47,11 +47,13 @@ export default function withAuth<P extends {}>(
           },
         })
         .then((data) => {
+          console.log(data);
           console.log("returning component");
           setAuthenticated(data.data.userId);
         })
         .catch((err) => {
-          console.log("err");
+          // console.log("err");
+          console.log(err);
           if (!err.response.data.status) {
             //   console.log(err.response.data.status);
             logout();

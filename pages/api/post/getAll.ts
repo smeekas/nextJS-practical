@@ -22,7 +22,7 @@ async function handler(req: NextRequestType, res: NextApiResponse) {
     //   return await item.populate('createdBy')
     // })
     const post = await Post.find().populate("createdBy",'userName');
-    // console.log(post[0].createdBy);
+    console.log(post[0]);
     return res.status(200).json({ data: post });
   }
 }

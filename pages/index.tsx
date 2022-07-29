@@ -19,6 +19,8 @@ export type SinglePostType = {
     _id: string;
     userName: string;
   };
+  createdAt:string
+  updatedAt:string
   likes: number;
   likedBy: string[];
   __V: number;
