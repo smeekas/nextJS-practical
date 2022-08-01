@@ -1,41 +1,13 @@
 import type { SinglePostType } from "../../pages";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import styles from "./Post.module.css";
-import { axiosInstance } from "../../helper/axios";
-import { useState } from "react";
+
+import Like from "../Like/Like";
 type PostType = {
   data: SinglePostType;
   liked: boolean;
   userId: string;
 };
 function Post({ data, liked, userId }: PostType) {
-  const [isLiked, setIsLiked] = useState({
-    count: data.likes,
-    mode: !liked,
-  });
-  const likeHandler = async () => {
-    axiosInstance
-      .post("/post/like", {
-        mode: isLiked.mode,
-        likedById: userId,
-        postId: data._id,
-      })
-      .then((data) => {
-        console.log(data);
-        // if (isLiked.mode) {
-        setIsLiked((prev) => {
-          return {
-            mode: !prev.mode,
-            count: data.data.data.likes,
-          };
-        });
-        // }
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   return (
     <div className={styles.post}>
       <section className={styles.userName}>
@@ -43,17 +15,12 @@ function Post({ data, liked, userId }: PostType) {
           <h5>{data.createdBy.userName}</h5>
           <p className={styles.date}>{getDate(data.createdAt)}</p>
         </div>
-        <div className={styles.likes}>
-          {isLiked.mode ? (
-            <AiOutlineHeart onClick={likeHandler} className={styles.icon} />
-          ) : (
-            <AiFillHeart onClick={likeHandler} className={styles.icon} />
-          )}
-
-          <section className={styles.likeCount}>
-            {isLiked.count > 0 ? isLiked.count : " "}
-          </section>
-        </div>
+        <Like
+          mode={!liked}
+          likes={data.likes}
+          userId={userId}
+          postId={data._id}
+        />
       </section>
       <section className={styles.content}>
         <section className={styles.textContent}>{data.text}</section>

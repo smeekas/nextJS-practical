@@ -63,7 +63,7 @@ export default function withAuth<P extends {}>(
     }, [props, logout]);
     console.log("returning loading.....");
     return authenticated.length === 0 ? (
-      <p>Loading....</p>
+      <p className="loading">Loading....</p>
     ) : (
       <Component {...props} userId={authenticated} />
     );

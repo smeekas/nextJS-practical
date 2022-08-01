@@ -19,8 +19,8 @@ export default async function handler(
     console.log(user);
     if (!user) {
       return res
-        .status(400)
-        .json({ status: false, message: "user doesn't exists" });
+        .status(401)
+        .json({ status: false, message: "User doesn't exists with given Email" });
     }
     const isEqual = await comparePassword(password, user.password);
     if (!isEqual) {

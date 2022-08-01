@@ -17,6 +17,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { mode, postId, likedById } = req.body;
 
     const post: PostType = (await Post.findById(postId))!;
+
+if(!post){
+  return res.status(200).json({status:false,message: "No post exists with given Id"})
+}
+
     if (mode) {
       //!like the post
 
@@ -45,7 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       }
       const result = await post.save();
       // console.log(result);
-      return res.status(200).json({ data: result });
+      return res.status(200).json({ status: true, data: result });
     }
   }
 }

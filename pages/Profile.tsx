@@ -14,7 +14,7 @@ function Profile(props: ProfileProps) {
       </div>
 
       <div className={styles.MyPosts}>
-        <h2>My Posts</h2>
+        <h2 className={styles.myPost}>My Posts</h2>
         <MyPosts userId={props.userId} />
       </div>
     </>

@@ -1,11 +1,12 @@
 import InputBox from "../components/InputBox/InputBox";
 import styles from "../styles/Signup.module.css";
 import AuthCard from "../components/AuthCard/Authcard";
-import { useContext, useReducer } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/router";
 import useAuthStore from "../store";
 import { axiosInstance } from "../helper/axios";
 import { setToken } from "../helper/localStorage";
+import ErrorCard from "../components/ErrorCard/ErrorCard";
 // import { setHeader } from "../helper/axios";
 const iniialState = {
   email: "",
@@ -32,8 +33,21 @@ export default function LogIn() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
   const [state, dispatch] = useReducer(reducer, iniialState);
+  const [error, setError] = useState<string | null>(null);
+  const hasError =
+    !state.email.trim().includes("@") || state.password.trim().length < 6;
+  useEffect(() => {
+    if (!hasError) {
+      setError(null);
+    }
+  }, [hasError]);
   const submitHandler = async () => {
     // console.log(state);
+
+    if (!state.email.trim().includes("@") || state.password.trim().length < 6) {
+      setError("Invalid email or password");
+      return;
+    }
     //!validation
     //!custom hook for http?
     //!custom hook for input
@@ -49,6 +63,7 @@ export default function LogIn() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.status) {
           // authctx.login(data.token,data.userName);
           // setToken(data.token);
@@ -56,13 +71,18 @@ export default function LogIn() {
             "bearer " + data.token;
           setToken(data.token);
           login(data.token, data.userName, data.userId);
-          // // setHeader(data.token);
           router.replace("/");
+        } else {
+          setError(data.message);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   return (
     <AuthCard>
+      <ErrorCard error={error} />
       <InputBox
         actionType="email"
         labelName="Email"

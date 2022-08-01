@@ -7,6 +7,8 @@ function Navbar() {
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const currentFocus = router.pathname;
+  console.log(currentFocus);
   const userName = useAuthStore((state) => state.userName);
   const LOGOHandler = () => {
     router.push("/");
@@ -27,11 +29,32 @@ function Navbar() {
   };
   return (
     <div className={styles.navbar}>
-      <div onClick={LOGOHandler}>ZITTER</div>
+      <div className={styles.logo} onClick={LOGOHandler}>ZITTER</div>
       <div className={styles.auth}>
-        {!isLoggedIn && <div onClick={SignupHandler}>signup</div>}
-        {!isLoggedIn && <div onClick={LoginHandler}>login</div>}
-        {isLoggedIn && <div onClick={ProfileHandler}>{userName}</div>}
+        {!isLoggedIn && (
+          <div
+            className={currentFocus === "/Signup" ? styles.current : ""}
+            onClick={SignupHandler}
+          >
+            signup
+          </div>
+        )}
+        {!isLoggedIn && (
+          <div
+            className={currentFocus === "/Login" ? styles.current : ""}
+            onClick={LoginHandler}
+          >
+            login
+          </div>
+        )}
+        {isLoggedIn && (
+          <div
+            className={currentFocus === "/Profile" ? styles.current : ""}
+            onClick={ProfileHandler}
+          >
+            {userName}
+          </div>
+        )}
 
         {isLoggedIn && <div onClick={LogoutHandler}>logout</div>}
       </div>

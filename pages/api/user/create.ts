@@ -19,13 +19,16 @@ export default async function handler(
     if (existinguser) {
       return res
         .status(400)
-        .json({ message: "user already exists", created: false });
+        .json({
+          message: "user already exists with given Email",
+          created: false,
+        });
     }
     const userNameExists = await User.findOne({ userName: userName });
     if (userNameExists) {
       return res
         .status(400)
-        .json({ message: "username already taken", created: false });
+        .json({ message: "username is already taken", created: false });
     }
     const hashedPassword = await hashPassword(password);
     if (password.length <= 6) {

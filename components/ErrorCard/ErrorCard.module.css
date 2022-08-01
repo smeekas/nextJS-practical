@@ -1,0 +1,13 @@
+.err {
+  background-color: red;
+  position: absolute;
+  color: white;
+  padding: 0.5rem;
+  margin: 0 auto;
+  top: -4rem;
+  left: 0rem;
+  font-size: large;
+  border-radius: 4px;
+  width: 20rem;
+  text-align: center;
+}

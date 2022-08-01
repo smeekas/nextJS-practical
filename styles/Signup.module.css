@@ -1,10 +1,14 @@
 .button {
-  background-color: brown;
+  background-color: #1f9be3;
   color: white;
-  padding: 0.4rem;
+  font-size: 1.3rem;
+  padding: 0.4rem 1rem;
+  outline: none;
+  border: none;
+  border-radius: 12px;
   align-self: center;
 }
 
 .button:hover {
-  background-color: #6d1c1c;
+  background-color: #0081cc;
 }

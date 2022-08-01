@@ -1,9 +1,16 @@
 import InputBox from "../components/InputBox/InputBox";
 import styles from "../styles/Signup.module.css";
 import AuthCard from "../components/AuthCard/Authcard";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/router";
-const iniialState = {
+import ErrorCard from "../components/ErrorCard/ErrorCard";
+type stateprops = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  userName: string;
+};
+const iniialState: stateprops = {
   email: "",
   password: "",
   confirmPassword: "",
@@ -30,11 +37,37 @@ const reducer = (state = iniialState, action: Action) => {
   }
   return state;
 };
+function getError(state: stateprops) {
+  return (
+    !state.email.trim().includes("@") ||
+    state.password.trim().length < 6 ||
+    state.password.trim() !== state.confirmPassword.trim()
+  );
+}
 export default function Signup() {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, iniialState);
+  const [error, setError] = useState<string | null>(null);
+  const hasError = getError(state);
+  useEffect(() => {
+    if (!hasError) {
+      setError(null);
+    }
+  }, [hasError]);
   const submitHandler = async () => {
-    console.log(state);
+    if (!state.email.trim().includes("@")) {
+      setError("Invalid Email");
+      return;
+    }
+    if (state.password.trim().length < 7) {
+      setError("Password length must be >=7 characters");
+      return;
+    }
+    if (state.password.trim() !== state.confirmPassword.trim()) {
+      setError("password & confirm password must match");
+      return;
+    }
+    // console.log(state);
     //!validation
     //!custom hook for http?
     //!custom hook for input
@@ -51,13 +84,17 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.created) {
           router.replace("/Login");
+        }else{
+          setError(data.message)
         }
       });
   };
   return (
     <AuthCard>
+      <ErrorCard error={error} />
       <InputBox
         actionType="email"
         labelName="Email"

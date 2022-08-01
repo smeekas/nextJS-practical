@@ -3,3 +3,6 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.noPost{
+  margin: 0 auto;
+}
