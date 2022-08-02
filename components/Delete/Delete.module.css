@@ -1,0 +1,32 @@
+.icon {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  margin-left: 0.5rem;
+  font-size: 1.8rem;
+  flex: 1;
+}
+.icon:hover {
+  transform: scale(1.1);
+}
+.permission {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.subIcon {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+.subIcon:hover {
+  transform: scale(1.1);
+}
+.check {
+  color: white;
+  background-color: red;
+}
+.close {
+  background-color: green;
+  color: white;
+}

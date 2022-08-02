@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectDb } from "../../../utils/db";
-// import User from "../../../model/User";
 import { Usertype } from "../../../model/User";
 import { Model } from "mongoose";
 const User: Model<Usertype> = require("../../../model/User");

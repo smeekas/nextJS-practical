@@ -26,6 +26,8 @@ function CreatePost() {
       })
       .then((data) => {
         setText("");
+        // console.log(data);
+        addPost(data.data.data);
         setIsLoading("POSTED!!!");
         setTimeout(() => {
           setIsLoading("POST");
@@ -48,6 +50,7 @@ function CreatePost() {
         onChange={(e) => {
           setText(e.target.value);
         }}
+        value={text}
         cols={20}
         rows={4}
       ></textarea>

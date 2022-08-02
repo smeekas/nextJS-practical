@@ -1,5 +1,6 @@
 import React from "react";
 import type { SinglePostType } from "../../pages";
+import Delete from "../Delete/Delete";
 type MyPostType = {
   data: SinglePostType;
   liked: boolean;
@@ -12,12 +13,15 @@ function MyPost({ data, liked, userId }: MyPostType) {
     <div className={styles.post}>
       <section className={styles.userName}>
         <p className={styles.date}>{getDate(data.createdAt)}</p>
-        <Like
-          mode={!liked}
-          likes={data.likes}
-          userId={userId}
-          postId={data._id}
-        />
+        <div className={styles.icons}>
+          <Delete postId={data._id} />
+          <Like
+            mode={!liked}
+            likes={data.likes}
+            userId={userId}
+            postId={data._id}
+          />
+        </div>
       </section>
       <section className={styles.content}>
         <section className={styles.textContent}>{data.text}</section>
