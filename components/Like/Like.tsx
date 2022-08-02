@@ -25,24 +25,18 @@ function Like({ userId, postId, likes, mode }: LikePropsType) {
         postId: postId,
       })
       .then((data) => {
-        console.log(data);
-
-        // if (isLiked.mode) {
         setIsLiked((prev) => {
           return {
             mode: !prev.mode,
             count: data.data.data.likes,
           };
         });
-        // }
-        console.log(data);
       })
       .catch((err) => {
         if (err.response.status === 401) {
           logout();
           router.push("/Login");
         }
-        console.log(err);
       });
   };
   return (

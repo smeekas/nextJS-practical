@@ -1,13 +1,12 @@
 import InputBox from "../components/InputBox/InputBox";
 import styles from "../styles/Signup.module.css";
 import AuthCard from "../components/AuthCard/Authcard";
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/router";
 import useAuthStore from "../store";
 import { axiosInstance } from "../helper/axios";
 import { setToken } from "../helper/localStorage";
 import ErrorCard from "../components/ErrorCard/ErrorCard";
-// import { setHeader } from "../helper/axios";
 const iniialState = {
   email: "",
   password: "",
@@ -42,15 +41,10 @@ export default function LogIn() {
     }
   }, [hasError]);
   const submitHandler = async () => {
-    // console.log(state);
-
     if (!state.email.trim().includes("@") || state.password.trim().length < 6) {
       setError("Invalid email or password");
       return;
     }
-    //!validation
-    //!custom hook for http?
-    //!custom hook for input
     await fetch("/api/user/login/", {
       method: "POST",
       body: JSON.stringify({
@@ -63,10 +57,7 @@ export default function LogIn() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.status) {
-          // authctx.login(data.token,data.userName);
-          // setToken(data.token);
           axiosInstance.defaults.headers.common["Authorization"] =
             "bearer " + data.token;
           setToken(data.token);
@@ -101,5 +92,3 @@ export default function LogIn() {
     </AuthCard>
   );
 }
-
-// onChange={dispatch}

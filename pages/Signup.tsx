@@ -67,10 +67,6 @@ export default function Signup() {
       setError("password & confirm password must match");
       return;
     }
-    // console.log(state);
-    //!validation
-    //!custom hook for http?
-    //!custom hook for input
     await fetch("/api/user/create/", {
       method: "POST",
       body: JSON.stringify({
@@ -84,7 +80,6 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.created) {
           router.replace("/Login");
         }else{
@@ -122,18 +117,6 @@ export default function Signup() {
       <button onClick={submitHandler} className={styles.button}>
         Signup
       </button>
-      {/* <div className={styles.inputBox}>
-        <label>Email</label>
-        <input type="email" />
-        </div>
-        <div className={styles.inputBox}>
-        <label>User name</label>
-        <input type="text" />
-        </div>
-        <div className={styles.inputBox}>
-        <label>Password</label>
-        <input type="password" />
-    </div> */}
     </AuthCard>
   );
 }

@@ -13,15 +13,12 @@ type ResType = {
   userId: string;
 };
 function MyApp({ Component, pageProps }: AppProps) {
-  // return <h1>asasas</h1>
-
   const login = useAuthStore((state) => state.login);
   const logout = useAuthStore((state) => state.logout);
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
       const token = getToken();
-      console.log("HERE TOKEN effect only ONCE");
 
       axiosInstance
         .post<ResType>("/user/auth", null, {
@@ -30,15 +27,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         })
         .then((data) => {
-          // console.log(data);
           axiosInstance.defaults.headers.common["Authorization"] =
             "bearer " + token;
           login(token, data.data.userName, data.data.userId);
         })
         .catch((err) => {
-          console.log(err);
           if (!err.response.data.status) {
-            console.log(err.response.data.status);
             router.replace("/Login");
             localStorage.clear();
             logout();

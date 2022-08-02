@@ -9,20 +9,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.method);
   if (req.method === "POST") {
-    // console.log(JSON.parse(req.body))
     const { email, password, userName }: ReqBodyType = req.body;
-    console.log(email);
     await connectDb();
     const existinguser = await User.findOne({ email: email });
     if (existinguser) {
-      return res
-        .status(400)
-        .json({
-          message: "user already exists with given Email",
-          created: false,
-        });
+      return res.status(400).json({
+        message: "user already exists with given Email",
+        created: false,
+      });
     }
     const userNameExists = await User.findOne({ userName: userName });
     if (userNameExists) {
@@ -44,7 +39,6 @@ export default async function handler(
       userName: userName,
     });
     const result = await user.save();
-    console.log(result);
     return res.status(201).json({ message: "user created", created: true });
   }
 }

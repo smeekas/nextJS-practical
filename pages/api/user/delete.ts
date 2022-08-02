@@ -4,9 +4,6 @@ import { connectDb } from "../../../utils/db";
 import { Usertype } from "../../../model/User";
 import { Model } from "mongoose";
 const User: Model<Usertype> = require("../../../model/User");
-type ReqBodyType = {
-  email: string;
-};
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,7 +12,6 @@ export default async function handler(
     await connectDb();
     const email: string = req.body.email;
     const result = await User.deleteOne({ email: email });
-    console.log(result);
     return res.status(200).json({ data: result });
   }
 }

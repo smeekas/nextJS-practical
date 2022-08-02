@@ -1,14 +1,13 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  /* padding: 0.5rem; */
   align-items: stretch;
-  font-size: 2.0rem;
-  
+  font-size: 2rem;
+
   color: white;
   background-color: #1f9be3;
 }
-.logo{
+.logo {
   padding: 0.2rem 0;
 }
 .auth {
@@ -30,6 +29,6 @@
   background-color: #1a74a8;
 }
 
-.current{
-  background-color: #0082ce ;
+.current {
+  background-color: #0082ce;
 }

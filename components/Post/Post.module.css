@@ -51,8 +51,6 @@
   margin: 0rem;
 }
 .date {
-  /* border: 1px solid red; */
-  /* justify-self: flex-start; */
   align-self: flex-start;
   padding: 0;
   margin: 0;
@@ -60,10 +58,8 @@
 }
 .likes {
   display: flex;
-  /* flex: 1; */
   flex-direction: row;
   align-items: center;
-  /* border: 1px solid red; */
   align-items: center;
 }
 .likeCount {
@@ -71,7 +67,6 @@
   min-width: 15px;
   padding-left: 4px;
   font-size: 0.8em;
-  /* border: 1px solid turquoise; */
 }
 .icon {
   color: blue;
@@ -79,8 +74,5 @@
   padding: 0;
   margin: 0;
   font-size: 1.8rem;
-  /* border: 1px solid violet; */
   flex: 1;
-  /* margin: 0 0.5rem; */
-  /* font-size: 2rem; */
 }

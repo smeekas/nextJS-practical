@@ -1,5 +1,4 @@
 .createPost {
-  /* border: 1px greenyellow solid; */
   display: flex;
   margin-top: 5rem;
   flex-direction: column;
@@ -40,7 +39,7 @@
   color: white;
 }
 
-.err{
+.err {
   background-color: red;
   position: absolute;
   color: white;

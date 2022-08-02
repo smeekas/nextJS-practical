@@ -16,7 +16,6 @@ export default async function handler(
     const { email, password }: ReqBodyType = req.body;
     //!EMAIL validation
     const user = await User.findOne({ email: email });
-    console.log(user);
     if (!user) {
       return res
         .status(401)

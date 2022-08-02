@@ -37,7 +37,6 @@ export default function withAuth<P extends {}>(
     const logout = useAuthStore((state) => state.logout);
     const router = useRouter();
     useEffect(() => {
-      // console.log(axiosInstance.defaults.headers.common["Authorization"]);
       axiosInstance.defaults.headers.common["Authorization"] =
         "bearer " + getToken()!;
       axiosInstance
@@ -47,21 +46,15 @@ export default function withAuth<P extends {}>(
           },
         })
         .then((data) => {
-          console.log(data);
-          console.log("returning component");
           setAuthenticated(data.data.userId);
         })
         .catch((err) => {
-          // console.log("err");
-          console.log(err);
           if (!err.response.data.status) {
-            //   console.log(err.response.data.status);
             logout();
             router.replace("/Login");
           }
         });
     }, [props, logout]);
-    console.log("returning loading.....");
     return authenticated.length === 0 ? (
       <p className="loading">Loading....</p>
     ) : (
@@ -71,23 +64,3 @@ export default function withAuth<P extends {}>(
 
   return Compo;
 }
-
-/**
-     useEffect(() => {
-      axiosInstance
-        .post("/user/auth", null, {
-          headers: {
-            Authorization: "bearer " + getToken(),
-          },
-        })
-        .then((data) => {})
-        .catch((err) => {
-          // console.log(err);
-          if (!err.response.data.status) {
-            //   console.log(err.response.data.status);
-            logout();
-            router.replace("/Login");
-          }
-        });
-    }, [logout, props]); 
- */

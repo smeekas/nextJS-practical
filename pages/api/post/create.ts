@@ -43,7 +43,4 @@ export function countWords(text: string): number {
     }
   }
   return count;
-  //   const num = text.split(" ").length;
-  //   //   console.log(num);
-  //   return num;
 }

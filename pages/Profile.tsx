@@ -20,6 +20,4 @@ function Profile(props: ProfileProps) {
     </>
   );
 }
-
-// export default Profile;
 export default withAuth(Profile);

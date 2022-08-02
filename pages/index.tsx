@@ -1,16 +1,10 @@
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import type { NextPage } from "next";
+
 import { GetServerSidePropsContext } from "next";
-import Post from "../components/Post/Post";
+
 import { AxiosResponse } from "axios";
 import { axiosInstance } from "../helper/axios";
-import withAuth from "../HOC/withAuth";
+
 import PostList from "../components/PostList/PostList";
 export type SinglePostType = {
   _id: string;
@@ -19,8 +13,8 @@ export type SinglePostType = {
     _id: string;
     userName: string;
   };
-  createdAt:string
-  updatedAt:string
+  createdAt: string;
+  updatedAt: string;
   likes: number;
   likedBy: string[];
   __V: number;
@@ -29,17 +23,9 @@ type HomePropsType = {
   data: SinglePostType[];
 };
 const Home: NextPage<HomePropsType> = ({ data }: HomePropsType) => {
-  return (
-    <PostList list={data} />
-    // <div className={styles.AllPosts}>
-    //   {data.map((item) => {
-    //     return <Post key={item._id} data={item} />;
-    //   })}
-    // </div>
-  );
+  return <PostList list={data} />;
 };
 
-// export default withAuth(Home);
 export default Home;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -52,7 +38,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: data,
     };
   } catch (err) {
-    // console.log(err);
     return {
       redirect: {
         destination: "/Login",
@@ -60,5 +45,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
-  // const data = { data: [] };
 }

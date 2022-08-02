@@ -1,13 +1,11 @@
-import type {SinglePostType} from '../../pages/index'
+import type { SinglePostType } from "../../pages/index";
 import Post from "../Post/Post";
 import WithAuth from "../../HOC/withAuth";
 export interface PostListType {
   list: SinglePostType[];
   userId?: string;
 }
-import { axiosInstance } from "../../helper/axios";
 import styles from "./PostList.module.css";
-import { useEffect } from "react";
 
 const PostList = (props: PostListType) => {
   return (

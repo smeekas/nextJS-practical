@@ -18,13 +18,11 @@ export default function withProtect(
         token,
         "shinzouwosasageyo"
       ) as decodedTokenType;
-      // console.log(decodedToken);
       if (!decodedToken) {
         return res
           .status(401)
           .json({ status: false, message: "Not authenticated" });
       }
-      // console.log(decodedToken.userId);
       req.userId = decodedToken.userId;
       return handler(req, res);
     } catch (e) {
